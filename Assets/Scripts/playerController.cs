@@ -2,14 +2,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
-public class playerController : MonoBehaviour
+public class playerController : MonoBehaviourPunCallbacks
 {
     [SerializeField] private GameObject cameraHolder;
+    [SerializeField] private GameObject _PauseMenu;
     
     [SerializeField] private float mouseSensitivity, sprintSpeed, walkSpeed, jumpForce, smoothTime;
 
+    [SerializeField] Item[] items;
+    int itemIndex;
+    private int previousItemIndex = -1;
+    
+    
     float verticalLookRotation;
     private bool grounded;
     private Vector3 smoothMoveVelocity;
@@ -25,7 +33,11 @@ public class playerController : MonoBehaviour
 
     private void Start()
     {
-        if (!PV.IsMine)
+        if (PV.IsMine)
+        {
+            EquipItem(0);
+        }
+        else
         {
             Destroy(GetComponentInChildren<Camera>().gameObject);
             Destroy(rb);
@@ -36,7 +48,35 @@ public class playerController : MonoBehaviour
     {
         if (!PV.IsMine)
         {
-            return;
+            if (PauseMenu.GameIsPaused)
+            {
+                Destroy(_PauseMenu.gameObject);
+            }
+        }
+        else
+        {
+            if (PauseMenu.GameIsPaused)
+            {
+                if (!Cursor.visible)
+                {
+                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.None;
+                }
+                return;
+            }
+            else
+            {
+                if (Cursor.visible)
+                {
+                    Cursor.visible = false;
+                    Cursor.lockState = CursorLockMode.Locked;
+                }
+            }
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            items[itemIndex].Use();
         }
         Look();
         Move();
@@ -48,7 +88,7 @@ public class playerController : MonoBehaviour
     void Look()
     {
         transform.Rotate(Vector3.up * (Input.GetAxisRaw("Mouse X") * mouseSensitivity));
-
+        
         verticalLookRotation += Input.GetAxisRaw("Mouse Y") * mouseSensitivity;
         verticalLookRotation = Mathf.Clamp(verticalLookRotation, -90f, 90f);
 
@@ -82,5 +122,33 @@ public class playerController : MonoBehaviour
             return;
         }
         rb.MovePosition(rb.position + transform.TransformDirection(moveAmount)* Time.fixedDeltaTime);
+        
+    }
+
+    public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
+    {
+        if (!PV.IsMine && targetPlayer == PV.Owner)
+        {
+            EquipItem((int)changedProps["itemIndex"]);
+        }
+    }
+
+    void EquipItem(int _index)
+    {
+        itemIndex = _index;
+        items[itemIndex].itemGameObject.SetActive(true);
+
+        if (previousItemIndex != 1)
+        {
+            items[previousItemIndex].itemGameObject.SetActive(false);
+        }
+        items[itemIndex].itemGameObject.SetActive(true);
+
+        if (PV.IsMine)
+        {
+            Hashtable hash = new Hashtable();
+            hash.Add("itemIndex",itemIndex);
+            PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
+        }
     }
 }

@@ -71,13 +71,13 @@ public class playerController : MonoBehaviourPunCallbacks
                     Cursor.visible = false;
                     Cursor.lockState = CursorLockMode.Locked;
                 }
+                if (Input.GetMouseButtonDown(0))
+                {
+                    items[itemIndex].Use();
+                }
             }
         }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            items[itemIndex].Use();
-        }
+        
         Look();
         Move();
         Jump();

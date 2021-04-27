@@ -1,8 +1,12 @@
 fileFormatVersion: 2
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 guid: 8b1dd9e6ff8dee5429122bbe09bc69ef
 =======
 guid: 8da2c0aba620dfb41a910d4d4e138531
+>>>>>>> Stashed changes
+=======
+guid: 8b1dd9e6ff8dee5429122bbe09bc69ef
 >>>>>>> Stashed changes
 ModelImporter:
   serializedVersion: 19301
@@ -74,7 +78,11 @@ ModelImporter:
     normalSmoothingSource: 0
   referencedClips: []
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   importAnimation: 0
+=======
+  importAnimation: 1
+>>>>>>> Stashed changes
 =======
   importAnimation: 1
 >>>>>>> Stashed changes

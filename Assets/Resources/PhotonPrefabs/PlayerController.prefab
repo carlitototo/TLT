@@ -695,6 +695,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dddc2c875cac1ef4aa9578ea44265efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7282782367621176919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4835599971005222408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 2
+    Name: IsWalking
+  - Type: 4
+    SynchronizeType: 2
+    Name: IsRunning
+  m_SynchronizeLayers:
+  - SynchronizeType: 2
+    LayerIndex: 0
 --- !u!1 &5087740432357456142
 GameObject:
   m_ObjectHideFlags: 0
@@ -1587,6 +1611,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 8447905035314096608}
   - {fileID: 4839128299343899919}
+  - {fileID: 7282782367621176919}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -1712,6 +1737,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6961485152608703861}
     m_Modifications:
+    - target: {fileID: 1239989026596307244, guid: 8a0bb70e43220804ebdd790a7f5fba64,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3732697280250556218, guid: 8a0bb70e43220804ebdd790a7f5fba64,
         type: 3}
       propertyPath: shooter
@@ -1721,6 +1751,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Projectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 5797424525447593008, guid: 8a0bb70e43220804ebdd790a7f5fba64,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8641825866830626114, guid: 8a0bb70e43220804ebdd790a7f5fba64,
         type: 3}

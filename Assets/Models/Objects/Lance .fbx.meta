@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 guid: 8b1dd9e6ff8dee5429122bbe09bc69ef
+=======
+guid: 8da2c0aba620dfb41a910d4d4e138531
+>>>>>>> Stashed changes
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
@@ -69,7 +73,11 @@ ModelImporter:
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
   referencedClips: []
+<<<<<<< Updated upstream
   importAnimation: 0
+=======
+  importAnimation: 1
+>>>>>>> Stashed changes
   humanDescription:
     serializedVersion: 3
     human: []

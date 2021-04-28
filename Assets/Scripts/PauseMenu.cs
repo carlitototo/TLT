@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using Photon.Pun;
 using UnityEngine;
 
-public class PauseMenu : MonoBehaviour
+public class PauseMenu : MonoBehaviourPunCallbacks
 {
     public static bool GameIsPaused = false;
     [SerializeField] GameObject PauseMenuUI;
@@ -16,12 +17,10 @@ public class PauseMenu : MonoBehaviour
             if (GameIsPaused)
             {
                 Resume();
-                Debug.Log("game is paused");
             }
             else
             {
                 Pause();
-                Debug.Log("game is resumed");
             }
         }
 
@@ -56,6 +55,9 @@ public class PauseMenu : MonoBehaviour
 
     public void Menus()
     {
-        Debug.Log("go to menus");
+        PhotonNetwork.LoadLevel(0);
+        PhotonNetwork.LeaveRoom();
+        menuManager.Instance.OpenMenu("loading");
+
     }
 }

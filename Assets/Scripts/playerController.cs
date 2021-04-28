@@ -57,11 +57,14 @@ public class playerController : MonoBehaviourPunCallbacks
         {
             if (PauseMenu.GameIsPaused)
             {
+                
                 if (!Cursor.visible)
                 {
                     Cursor.visible = true;
                     Cursor.lockState = CursorLockMode.None;
                 }
+
+                
                 return;
             }
             else
@@ -75,12 +78,19 @@ public class playerController : MonoBehaviourPunCallbacks
                 {
                     items[itemIndex].Use();
                 }
+                Look();
+                Move();
+                Jump();
+                for (int i = 0; i < items.Length; i++)
+                {
+                    if (Input.GetKeyDown((i+1).ToString()))
+                    {
+                        EquipItem(i);
+                        break;
+                    }
+                }
             }
         }
-        
-        Look();
-        Move();
-        Jump();
     }
     
     
@@ -138,7 +148,7 @@ public class playerController : MonoBehaviourPunCallbacks
         itemIndex = _index;
         items[itemIndex].itemGameObject.SetActive(true);
 
-        if (previousItemIndex != 1)
+        if (previousItemIndex != -1)
         {
             items[previousItemIndex].itemGameObject.SetActive(false);
         }
